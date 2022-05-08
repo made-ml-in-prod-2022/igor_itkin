@@ -1,4 +1,5 @@
 hydra-core==1.1.2
+mlflow==1.25.1
 bokeh==2.2.3
 boto3==1.17.110
 boto==2.49.0
