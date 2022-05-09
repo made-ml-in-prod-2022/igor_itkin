@@ -3,11 +3,6 @@ from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 
 
-def _categorize_column(catdata, column):
-    values = catdata['values']
-    return OneHotEncoder(categories=values).fit_transform(column)
-
-
 @dataclass
 class DataReader:
     categorical: list
