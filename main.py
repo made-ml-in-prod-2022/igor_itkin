@@ -12,9 +12,8 @@ logger = logging.getLogger(__name__)
 def main(cfg: DictConfig) -> None:
     logger.info(OmegaConf.to_yaml(cfg))
     logger.info("Working directory : {}".format(os.getcwd()))
-    model = instantiate(cfg.mode.trainer, dataloader=cfg.dataloader)
-    model.fit()
-
+    model = instantiate(cfg.mode, dataloader=cfg.dataloader)
+    model()
 
 
 if __name__ == '__main__':

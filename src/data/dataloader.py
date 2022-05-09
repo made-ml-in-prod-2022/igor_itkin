@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+
+from hydra.utils import to_absolute_path
 from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 
@@ -9,7 +11,7 @@ class DataLoader:
     target: str
 
     def read_data(self, path: str) -> (pd.DataFrame, pd.Series):
-        df = pd.read_csv(path)
+        df = pd.read_csv(to_absolute_path(path))
         names2drop = []
         new_dfs = []
         for catdata in self.categorical:

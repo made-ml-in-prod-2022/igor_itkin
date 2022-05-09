@@ -1,10 +1,12 @@
-validate:
-    _target_ : src.model.validator.Validator
-    estimator: sklearn.linear_model.LogisticRegression
+_target_ : src.model.validator.Validator
+data: ./data/heart_cleveland_upload.csv
+model:
+    - scaler:
+          _target_: sklearn.preprocessing.StandardScaler
+    - model:
+          _target_: sklearn.linear_model.LogisticRegression
+          solver: liblinear
+cross_validate_params:
     return_train_score: True
-    cv: 2
-    shuffle: True
-    random_state: 42
-    scoring: [accuracy_score, f1_score]
-    dataloader:
-        data: /da
+    cv: 3
+    scoring: [accuracy, f1]

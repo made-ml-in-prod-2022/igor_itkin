@@ -1,6 +1,5 @@
+import logging
 import os
-import shutil
-from dataclasses import dataclass
 import pickle
 
 from hydra.utils import to_absolute_path
@@ -8,10 +7,10 @@ from sklearn import metrics
 from sklearn.pipeline import Pipeline
 
 from src.data.dataloader import DataLoader
-import logging
+
 logger = logging.getLogger(__name__)
 
-@dataclass
+
 class Trainer:
     def __init__(self, dataloader: DataLoader, data: str, model, save_to: str, accuracy_on_train=False):
         self.dataloader = dataloader
@@ -19,6 +18,9 @@ class Trainer:
         self.save_to = save_to
         self.accuracy_on_train = accuracy_on_train
         self.data = data
+
+    def __call__(self, *args, **kwargs):
+        return self.fit()
 
     def fit(self):
         x, y = self.dataloader.read_data(to_absolute_path(self.data))
