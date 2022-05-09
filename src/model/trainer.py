@@ -5,6 +5,7 @@ import pickle
 
 from hydra.utils import to_absolute_path
 from sklearn import metrics
+from sklearn.pipeline import Pipeline
 
 from src.data.dataloader import DataLoader
 import logging
@@ -21,6 +22,13 @@ class Trainer:
 
     def fit(self):
         x, y = self.dataloader.read_data(to_absolute_path(self.data))
+
+        pipeline = []
+        for entry in self.model:
+            name = list(entry.keys())[0]
+            value = entry[name]
+            pipeline.append((name, value))
+        self.model = Pipeline(pipeline)
         logger.info(f"Fitting model {self.model.__class__.__name__}")
         self.model.fit(x, y)
         if self.save_to:
