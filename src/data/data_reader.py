@@ -17,7 +17,7 @@ class DataReader:
         df = pd.read_csv(path)
         names2drop = []
         new_dfs = []
-        for catdata in data_reader.categorical:
+        for catdata in self.categorical:
             name = catdata['name']
             names2drop.append(name)
             data = df[name].values.reshape(-1, 1)
