@@ -1,4 +1,6 @@
-predict:
-    _target_ : src.model.predictor.Predictor
-    data: ./data/heart_cleveland_upload.csv
-    model_path: ./models/logisic_regresson.pkl
+_target_ : src.model.predictor.Predictor
+data: ./data/heart_cleveland_upload.csv
+load_from: ./models/logistic_regression.pkl
+save_predictions_to:
+  dir: ./predictions/
+  filename: pred.csv
