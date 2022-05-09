@@ -1,4 +1,5 @@
-Predictor:
+Trainer:
     data: ./data/heart_cleveland_upload.csv
     model: sklearn.linear_model.LinearRegression
     model_path: ./models/
+    mode: train
