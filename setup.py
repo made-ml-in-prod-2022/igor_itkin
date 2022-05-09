@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='ml_in_prod',
     version='0.0.1',
-    packages=['src', 'src.data', 'src.train', 'src.predict'],
+    packages=['src', 'src.data', 'src.model'],
     url='',
     license='Apache',
     author='Igor Itkin',
