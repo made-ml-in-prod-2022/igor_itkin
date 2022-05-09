@@ -27,7 +27,7 @@ class Predictor:
         with open(to_absolute_path(self.load_from), "rb") as f:
             model = pickle.load(f)
         X, _ = self.dataloader.read_data(self.data)
-        logger.info(f'Predicting')
+        logger.info("Predicting")
         predictions = model.predict(X)
         out_fullpath = os.path.join(self.save_predictions_to['dir'], self.save_predictions_to['filename'])
         logger.info(f'Saving predictions to {out_fullpath}')

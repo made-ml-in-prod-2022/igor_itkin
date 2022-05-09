@@ -43,7 +43,7 @@ class Trainer:
 
         if self.accuracy_on_train:
             y_pred = self.model.predict(x)
-            logger.info(f"Prediction on train:")
+            logger.info("Prediction on train:")
             for metric in self.accuracy_on_train['metrics']:
                 value = getattr(metrics, metric)(y, y_pred)
                 logger.info(f"\t{metric}: {value}")
