@@ -1,4 +1,4 @@
-Predictor:
+predict:
+    _target_ : src.model.predictor.Predictor
     data: ./data/heart_cleveland_upload.csv
-    model: sklearn.linear_model.LinearRegression
-    model_path: ./models/
+    model_path: ./models/logisic_regresson.pkl

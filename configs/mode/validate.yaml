@@ -1,0 +1,10 @@
+validate:
+    _target_ : src.model.validator.Validator
+    estimator: sklearn.linear_model.LogisticRegression
+    return_train_score: True
+    cv: 2
+    shuffle: True
+    random_state: 42
+    scoring: [accuracy_score, f1_score]
+    dataloader:
+        data: /da

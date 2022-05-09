@@ -4,7 +4,7 @@ import pandas as pd
 
 
 @dataclass
-class DataReader:
+class DataLoader:
     categorical: list
     target: str
 

@@ -1,5 +1,8 @@
-Trainer:
-    data: ./data/heart_cleveland_upload.csv
-    model: sklearn.linear_model.LinearRegression
-    model_path: ./models/
-    mode: train
+train:
+    _target_ : src.model.trainer.Trainer
+    dataloader: src.data.data_reader.DataLoader
+        data: ./data/
+    model: sklearn.linear_model.LogisticRegression
+    save_to: ./models/logistic_regresson.pkl
+    accuracy_on_train:
+        metrics:  [sklearn.metrics.accuracy_score, accuracy_score.f1_score]
