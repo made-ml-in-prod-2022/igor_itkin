@@ -1,4 +1,4 @@
 defaults:
   - logging: logger
-  - data_reader: data_reader
-  - mode: predict
+  - dataloader: dataloader
+  - mode: train
