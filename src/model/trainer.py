@@ -1,6 +1,9 @@
 import logging
 import os
 import pickle
+import typing
+from dataclasses import dataclass
+from typing import List
 
 from hydra.utils import to_absolute_path
 from sklearn import metrics
@@ -10,14 +13,13 @@ from src.data.dataloader import DataLoader
 
 logger = logging.getLogger(__name__)
 
-
+@dataclass
 class Trainer:
-    def __init__(self, dataloader: DataLoader, data: str, model, save_to: str, accuracy_on_train=False):
-        self.dataloader = dataloader
-        self.model = model
-        self.save_to = save_to
-        self.accuracy_on_train = accuracy_on_train
-        self.data = data
+    dataloader: DataLoader
+    data: str
+    model: 'typing.Any'
+    save_to: str
+    accuracy_on_train: typing.Union[bool, List[str]] = False
 
     def __call__(self, *args, **kwargs):
         return self.fit()
