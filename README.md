@@ -4,10 +4,12 @@
 
 #### Придумываем модельку (по дефолту это линейная регрессия) и смотрим, что получается на кросс валидации
 
-python main.py mode=validate
+python main.py mode=validate_csv
+
+python main.py mode=validate_lr
 
 #### Если понравилось - обучаем на всех данных:
-python main.py mode=train
+python main.py mode=train_csv
 
 #### Предсказываем:
 python main.py mode=predict
