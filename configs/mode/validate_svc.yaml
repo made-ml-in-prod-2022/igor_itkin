@@ -1,0 +1,11 @@
+_target_ : src.model.validator.Validator
+data: ./data/heart_cleveland_upload.csv
+model:
+    - scaler:
+          _target_: sklearn.preprocessing.StandardScaler
+    - model:
+          _target_: sklearn.svm.SVC
+cross_validate_params:
+    return_train_score: True
+    cv: 3
+    scoring: [accuracy, f1]

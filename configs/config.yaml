@@ -1,0 +1,4 @@
+defaults:
+  - logging: logger
+  - dataloader: dataloader
+  - mode: train_lr
