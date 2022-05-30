@@ -16,4 +16,3 @@ python main.py mode=train_svc
 python main.py mode=predict
 
 Все остальное также, по соотв. параметрам в конфигах
-
