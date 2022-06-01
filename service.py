@@ -67,6 +67,11 @@ async def startup_event():
     startup(config)
 
 
+@app.get("/", status_code=200)
+def root():
+    return {"message": "service is up"}
+
+
 @app.get("/health", status_code=200)
 def health():
     logger.info("starting health service")
