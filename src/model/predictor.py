@@ -18,17 +18,18 @@ class Predictor:
     load_from: str
     save_predictions_to: str
     dataloader: DataLoader
-    model = None
 
     def __call__(self, *args, **kwargs):
         return self.predict()
 
     def predict(self):
         logger.info(f"Loading model from {self.load_from}")
-        if self.model is None:
-            with open(to_absolute_path(self.load_from), "rb") as f:
-                self.model = pickle.load(f)
+        with open(to_absolute_path(self.load_from), "rb") as f:
+            model = pickle.load(f)
         X, _ = self.dataloader.read_data(self.data)
         logger.info("Predicting")
-        predictions = self.model.predict(X)
-        return predictions
+        predictions = model.predict(X)
+        out_fullpath = os.path.join(self.save_predictions_to['dir'], self.save_predictions_to['filename'])
+        logger.info(f'Saving predictions to {out_fullpath}')
+        os.makedirs(self.save_predictions_to['dir'], exist_ok=True)
+        pd.DataFrame(predictions).to_csv(out_fullpath)
