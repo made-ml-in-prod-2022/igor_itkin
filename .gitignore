@@ -2,5 +2,5 @@
 outputs
 *.pyc
 .ipynb_checkpoints
-models
+ml_project/models
 *.pkl
