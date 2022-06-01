@@ -1,5 +1,5 @@
 #usr/bin/bash
-curl --location --request POST '127.0.0.1:8000/predict' \
+curl --location --request POST '127.0.0.1:5000/predict' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "age": 30,
