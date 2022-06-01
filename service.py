@@ -88,6 +88,8 @@ async def predict(item: DataConfig):
     data = []
     for f in COLUMNS_ORDER:
         data.append(getattr(item, f))
-    # print(data)
-    preds = predictor(data)
-    return {"predictions": preds.tolist()}
+    try:
+        preds = predictor(data)
+        return {"predictions": preds.tolist(), "errors": []}
+    except Exception as ex:
+        return {"predictions": [], "errors": f"{ex}"}
