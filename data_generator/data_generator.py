@@ -7,8 +7,6 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
-from report_template import TEMPLATE
-
 CATEGORICAL = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal']
 
 
