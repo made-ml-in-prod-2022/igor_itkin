@@ -1,0 +1,11 @@
+_target_ : src.model.trainer.Trainer
+data: ./data/heart_cleveland_upload.csv
+model:
+    - scaler:
+        _target_: sklearn.preprocessing.StandardScaler
+    - model:
+        _target_: sklearn.linear_model.LogisticRegression
+        solver: liblinear
+save_to: ./models/logistic_regression.pkl
+accuracy_on_train:
+    metrics:  [accuracy_score, f1_score]

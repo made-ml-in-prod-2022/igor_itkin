@@ -3,4 +3,3 @@ outputs
 *.pyc
 .ipynb_checkpoints
 models
-*.pkl

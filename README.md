@@ -9,4 +9,3 @@
 ./scripts/alive.sh
 ./scripts/health.sh
 ./scripts/predict.sh
-
