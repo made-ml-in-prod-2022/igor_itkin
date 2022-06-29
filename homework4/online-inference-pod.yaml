@@ -1,10 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx
+  name: online-inference-pod
 spec:
   containers:
-  - name: nginx
-    image: nginx:1.14.2
-    ports:
-    - containerPort: 80
+    - name: ml-in-prod
+      image: yehudaitkin/ml-in-prod::latest
+      imagePullPolicy: Always
+      ports:
+      - name: online-inference
+        containerPort: 5000
+        protocol: TCP
