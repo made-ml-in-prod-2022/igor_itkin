@@ -1,6 +1,0 @@
-.idea
-outputs
-*.pyc
-.ipynb_checkpoints
-ml_project/models
-*.pkl
