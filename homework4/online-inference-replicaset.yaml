@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: inference
+  labels:
+    app: ml-inference
+    tier: inference
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: inference
+  template:
+    metadata:
+      labels:
+        tier: inference
+    spec:
+      containers:
+      - name: inference
+        image: nginx:1.14.2
