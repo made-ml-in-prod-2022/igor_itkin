@@ -1,8 +1,12 @@
 import argparse
+import logging
 import os
 
 import numpy as np
 import pandas as pd
+
+logging.basicConfig()
+logger = logging.getLogger(__name__)
 
 CATEGORICAL = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal']
 
