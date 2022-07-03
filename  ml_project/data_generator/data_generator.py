@@ -1,13 +1,8 @@
 import argparse
-import base64
-import datetime
 import os
-from io import BytesIO
+
 import numpy as np
 import pandas as pd
-from matplotlib import pyplot as plt
-
-from report_template import TEMPLATE
 
 CATEGORICAL = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal']
 
@@ -59,7 +54,7 @@ def main():
     new_df = pd.DataFrame()
     for col in df.columns:
         new_df[col] = answer[col]
-    print(f"Writing output to {filename}")
+    logger.info(f"Writing output to {filename}")
     new_df.to_csv(filename)
 
 

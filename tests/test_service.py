@@ -58,5 +58,4 @@ def test_predict_bad_request():
 def test_predict_good_request():
     response = client.post("/predict", json=GOOD_DATA_REQUEST)
     assert 200 <= response.status_code < 300
-    print(response.json()['errors'])
     assert len(response.json()['errors']) == 0

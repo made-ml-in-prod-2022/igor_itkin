@@ -43,7 +43,7 @@ def main():
                                cat_values=cat_features_values,
                                encoded_image=encoded_image)
     filename = os.path.abspath(args.output)
-    print(f"Writing output to {filename}")
+    logger.info(f"Writing output to {filename}")
     with open(filename, "wt") as f:
         f.write(template)
 

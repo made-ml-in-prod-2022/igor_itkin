@@ -1,6 +1,7 @@
 import argparse
 import base64
 import datetime
+import logging
 import os
 from io import BytesIO
 
@@ -8,6 +9,9 @@ import pandas as pd
 from matplotlib import pyplot as plt
 
 from report_template import TEMPLATE
+
+logging.basicConfig()
+logger = logging.getLogger(__name__)
 
 CATEGORICAL = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal']
 
@@ -43,7 +47,7 @@ def main():
                                cat_values=cat_features_values,
                                encoded_image=encoded_image)
     filename = os.path.abspath(args.output)
-    print(f"Writing output to {filename}")
+    logger.info(f"Writing output to {filename}")
     with open(filename, "wt") as f:
         f.write(template)
 
