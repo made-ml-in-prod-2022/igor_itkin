@@ -1,11 +1,16 @@
 import argparse
 import base64
 import datetime
+import logging
 import os
 from io import BytesIO
 
 import pandas as pd
 from matplotlib import pyplot as plt
+
+logging.basicConfig()
+logger = logging.getLogger(__name__)
+
 
 from report_template import TEMPLATE
 
