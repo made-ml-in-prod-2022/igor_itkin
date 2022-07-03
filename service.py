@@ -54,7 +54,7 @@ config = None
 
 def startup(cfg: DictConfig) -> None:
     global predictor
-    print("Working directory : {}".format(os.getcwd()))
+    logger.info("Working directory : {}".format(os.getcwd()))
     predictor = instantiate(cfg.mode, dataloader=cfg.dataloader)
 
 
@@ -63,7 +63,7 @@ async def startup_event():
     global config
     initialize(config_path="configs", job_name="test_app")
     config = compose(config_name="config")
-    print(OmegaConf.to_yaml(config))
+    logger.info(f"{OmegaConf.to_yaml(config)}")
     startup(config)
 
 
