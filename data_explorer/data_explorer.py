@@ -8,10 +8,11 @@ from io import BytesIO
 import pandas as pd
 from matplotlib import pyplot as plt
 
-from report_template import TEMPLATE
-
 logging.basicConfig()
 logger = logging.getLogger(__name__)
+
+
+from report_template import TEMPLATE
 
 CATEGORICAL = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal']
 

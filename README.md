@@ -1,18 +1,24 @@
 # Igor Itkin (Made)
-Поскольку все основанно на гидре - использование очень простое
+В конфигах по прежнему гидра
 
-Например 
+Чтобы запустить сборку и имадж в докере (будет открыт 5000 порт) 
 
-#### Придумываем модельку  и смотрим, что получается на кросс валидации
+`docker-compose up -d --build`
 
-python main.py mode=validate_svc
+Чтобы собрать докер образ без композера (легкие пути!? Мы не ищем легких путей!)  
+`docker build -t yehudaitkin/ml-in-prod .`
 
-python main.py mode=validate_lr
 
-#### Если понравилось - обучаем на всех данных:
-python main.py mode=train_svc
+Чтобы запушить на докер-хаб (предположим, что мы уже залогинились)  
+Если не существует репы  
+`docker build -t yehudaitkin/ml-in-prod`  
+и  
+`docker push  yehudaitkin/ml-in-prod`  
+а если у нас какая то свой террариум образов  
+`docker push  terrarium/yehudaitkin/ml-in-prod`
 
-#### Предсказываем:
-python main.py mode=predict
 
-Все остальное также, по соотв. параметрам в конфигах
+Скрипты работают понятно и просто (как то исторически тоже на 5000) 
+./scripts/alive.sh
+./scripts/health.sh
+./scripts/predict.sh

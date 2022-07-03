@@ -1,12 +1,11 @@
 import argparse
-import logging
+import base64
+import datetime
 import os
-
+from io import BytesIO
 import numpy as np
 import pandas as pd
-
-logging.basicConfig()
-logger = logging.getLogger(__name__)
+from matplotlib import pyplot as plt
 
 CATEGORICAL = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal']
 
@@ -58,7 +57,7 @@ def main():
     new_df = pd.DataFrame()
     for col in df.columns:
         new_df[col] = answer[col]
-    logger.info(f"Writing output to {filename}")
+    print(f"Writing output to {filename}")
     new_df.to_csv(filename)
 
 
