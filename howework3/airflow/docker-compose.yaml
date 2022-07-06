@@ -279,5 +279,25 @@ services:
       context: images/airflow-ml-base
     image: airflow-ml-base
     restart: "no"
+
+  predict:
+    build:
+      context: images/airflow-predict
+    image: airflow-predict
+    restart: "no"
+
+  train:
+    build:
+      context: images/airflow-train
+    image: airflow-train
+    restart: "no"
+
+  preprocess:
+    build:
+      context: images/airflow-preprocess
+    image: airflow-preprocess
+    restart: "no"
+
+
 volumes:
   postgres-db-volume:
