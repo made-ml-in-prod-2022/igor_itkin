@@ -1,18 +1,9 @@
-# Igor Itkin (Made)
-Поскольку все основанно на гидре - использование очень простое
 
-Например 
+### Configuration  
+Change model_dir/ in docker-compose.yml  
+`AIRFLOW_VAR_MODELPATH=/data/models/2022-07-06`  
 
-#### Придумываем модельку  и смотрим, что получается на кросс валидации
+### Run app
 
-python main.py mode=validate_svc
-
-python main.py mode=validate_lr
-
-#### Если понравилось - обучаем на всех данных:
-python main.py mode=train_svc
-
-#### Предсказываем:
-python main.py mode=predict
-
-Все остальное также, по соотв. параметрам в конфигах
+`export FERNET_KEY=$(python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")`  
+`sudo docker-compose up --build`
