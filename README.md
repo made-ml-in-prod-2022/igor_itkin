@@ -1,24 +1,9 @@
-# Igor Itkin (Made)
-В конфигах по прежнему гидра
 
-Чтобы запустить сборку и имадж в докере (будет открыт 5000 порт) 
+### Configuration  
+Change model_dir/ in docker-compose.yml  
+`AIRFLOW_VAR_MODELPATH=/data/models/2022-07-06`  
 
-`docker-compose up -d --build`
+### Run app
 
-Чтобы собрать докер образ без композера (легкие пути!? Мы не ищем легких путей!)  
-`docker build -t yehudaitkin/ml-in-prod .`
-
-
-Чтобы запушить на докер-хаб (предположим, что мы уже залогинились)  
-Если не существует репы  
-`docker build -t yehudaitkin/ml-in-prod`  
-и  
-`docker push  yehudaitkin/ml-in-prod`  
-а если у нас какая то свой террариум образов  
-`docker push  terrarium/yehudaitkin/ml-in-prod`
-
-
-Скрипты работают понятно и просто (как то исторически тоже на 5000) 
-./scripts/alive.sh
-./scripts/health.sh
-./scripts/predict.sh
+`export FERNET_KEY=$(python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")`  
+`sudo docker-compose up --build`
