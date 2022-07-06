@@ -4,25 +4,25 @@ import pickle
 import click
 import pandas as pd
 
-INPUT_FILE = "features_train.csv"
-OUTPUT_FILE = "target_train.csv"
-MODEL_FILE = "model.pkl"
+INPUT_FILE = "features.csv"
+OUTPUT_FILE = "features.csv"
+PREPROCESSOR_FILE = "model.pkl"
 
 
-@click.command("predict")
+@click.command("preprocess")
 @click.option("--model-dir")
 @click.option("--input-dir")
 @click.option("--output-dir")
-def predict(model_dir:str, input_dir: str, output_dir:str):
+def preprocess(models_dir: str, input_dir: str, output_dir: str):
     features = pd.read_csv(os.path.join(input_dir, INPUT_FILE))
-    model_fullpath = os.path.join(model_dir, MODEL_FILE)
+    model_fullpath = os.path.join(models_dir, PREPROCESSOR_FILE)
     with open(model_fullpath, "rb") as f:
-        model = pickle.load(f)
-    predictions = model.predict(features)
+        preprocessor = pickle.load(f)
+    features = preprocessor.transform(features)
 
     os.makedirs(output_dir, exist_ok=True)
-    predictions.to_csv(os.path.join(output_dir, OUTPUT_FILE))
+    features.to_csv(os.path.join(output_dir, OUTPUT_FILE))
 
 
 if __name__ == '__main__':
-    predict()
+    preprocess()
