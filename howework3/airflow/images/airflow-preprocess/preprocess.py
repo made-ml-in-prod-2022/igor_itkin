@@ -4,9 +4,9 @@ import pickle
 import click
 import pandas as pd
 
-INPUT_FILE = "features.csv"
-OUTPUT_FILE = "features.csv"
-PREPROCESSOR_FILE = "model.pkl"
+INPUT_FILE = "data.csv"
+OUTPUT_FILE = "data.csv"
+PREPROCESSOR_FILE = "preprocessor.pkl"
 
 
 @click.command("preprocess")

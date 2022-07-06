@@ -6,8 +6,8 @@ import pandas as pd
 
 from sklearn.ensemble import RandomForestClassifier
 
-INPUT_FILE = "features_train.csv"
-TARGETS_FILE = "target_train.csv"
+INPUT_FILE = "train_data.csv"
+TARGETS_FILE = "train_targets.csv"
 MODEL_FILE = "model.pkl"
 
 
@@ -25,8 +25,6 @@ def train(model_dir: str, train_dir: str):
     model_fullpath = os.path.join(model_dir, MODEL_FILE)
     with open(model_fullpath, "wb") as f:
         pickle.dump(f)
-
-
 
 
 if __name__ == '__main__':

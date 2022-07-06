@@ -4,7 +4,7 @@ import pickle
 import click
 import pandas as pd
 
-INPUT_FILE = "features.csv"
+INPUT_FILE = "data.csv"
 OUTPUT_FILE = "prediction.csv"
 MODEL_FILE = "model.pkl"
 
