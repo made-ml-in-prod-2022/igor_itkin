@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 from airflow import DAG
+from airflow.models import Variable
 from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.utils.dates import days_ago
 from docker.types import Mount
@@ -14,22 +15,22 @@ MOUNT_SOURCE = Mount(
 FAKE_DATA_DIR = "/data/models/{{ ds }}"
 RAW_DATA_DIR = "/data/raw/{{ ds }}"
 PP_DATA_DIR = "/data/processed/{{ ds }}"
-MODEL_DIR = "/data/models/{{ ds }}"
+MODEL_DIR = Variable.get("MODELPATH")
 PREDICT_DIR = "/data/predictions/{{ ds }}"
-
+LOCAL_DIR = "/home/yehuda/garbage/h3hw/"
 
 NUM_SAMPLES = 100
 SAMPLE_FILE = "data_sample.csv"
 
 default_args = {
-    "owner": "Igor Itkin aka BukaByaka",
+    "owner": "Igor (Yehuda) Itkin aka BukaByaka",
     "email": ["ig.itkin@gmail.com"],
     "retries": 1,
     "retry_delay": timedelta(minutes=5),
 }
 
 with DAG(
-        "data_generator",
+        "predict-fake",
         default_args=default_args,
         schedule_interval="@daily",
         start_date=days_ago(0),
@@ -50,7 +51,7 @@ with DAG(
         do_xcom_push=False,
         network_mode="bridge",
         # Do we need mount here?
-        mounts=[Mount(source="/home/yehuda/garbage/data/fake", target="/data", type='bind')]
+        mounts=[Mount(source=f"{LOCAL_DIR}/data/fake", target=FAKE_DATA_DIR, type='bind')]
     )
 
     # Here the model is the preprocessor!

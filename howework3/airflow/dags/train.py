@@ -3,20 +3,21 @@ from datetime import timedelta
 from airflow import DAG
 from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.utils.dates import days_ago
-from airflow.models import Variable
 from docker.types import Mount
 
-
-DIR_PROCESSED = "/data/processed/{{ ds }}"
-MODEL_PATH = Variable.get("MODELPATH")
-PREDICTIONS_PATH = "/data/predictions/{{ ds }}"
+FAKE_DATA_DIR = "/data/models/{{ ds }}"
+REAL_DATA = "/data/real/{{ ds }}"
+RAW_DATA_DIR = "/data/raw/{{ ds }}"
+PP_DATA_DIR = "/data/processed/{{ ds }}"
+MODEL_DIR = "/data/models/{{ ds }}"
+PREDICT_DIR = "/data/predictions/{{ ds }}"
+LOCAL_DIR = "/home/yehuda/garbage/h3hw"
 
 MOUNT_SOURCE = Mount(
-    source="/home/yehuda/garbage/hw3data",
+    source=f"{LOCAL_DIR}/data/train",
     target="/data",
     type='bind'
-    )
-
+)
 
 default_args = {
     "owner": "Igor (Yehuda) Itkin aka BykaByaka",
@@ -33,7 +34,7 @@ with DAG(
 ) as dag:
     preprocess = DockerOperator(
         image="airflow-preprocess",
-        command="--in_dir {} --model_dir {} --pred_dir {}".format(DIR_PROCESSED, MODEL_PATH, PREDICTIONS_PATH),
+        command=f"--model_dir {MODEL_DIR} --input-dir {RAW_DATA_DIR}--output_dir {PP_DATA_DIR}",
         task_id="docker-airflow-preprocess",
         do_xcom_push=False,
         network_mode="bridge",
@@ -41,7 +42,7 @@ with DAG(
 
     train = DockerOperator(
         image="airflow-train",
-        command="--in_dir {} --model_dir {} --pred_dir {}".format(DIR_PROCESSED, MODEL_PATH, PREDICTIONS_PATH),
+        command=f"--model_dir {MODEL_DIR} --predict_dir {PREDICT_DIR}",
         task_id="docker-airflow-train",
         do_xcom_push=False,
         network_mode="bridge",

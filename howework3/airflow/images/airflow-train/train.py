@@ -14,7 +14,8 @@ MODEL_FILE = "model.pkl"
 @click.command("train")
 @click.option("--model-dir")
 @click.option("--train-dir")
-def train(model_dir: str, train_dir: str):
+@click.option("--predict-dir")
+def train(model_dir: str, train_dir: str, predict_dir: str):
     features = pd.read_csv(os.path.join(train_dir, INPUT_FILE))
     targets = pd.read_csv(os.path.join(train_dir, TARGETS_FILE))
 
